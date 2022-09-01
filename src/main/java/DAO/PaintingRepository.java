@@ -9,7 +9,7 @@ import java.util.List;
 
 public class PaintingRepository {
     Connection conn;
-    public PaintingRepository(){
+    public PaintingRepository() throws SQLException {
         conn = ConnectionUtil.getConnection();
     }
     public List<Painting> getAllPaintings(){

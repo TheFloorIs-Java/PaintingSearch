@@ -8,7 +8,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ArtistRepository {
-    Connection conn = ConnectionUtil.getConnection();
+    Connection conn;
+    public ArtistRepository() throws SQLException {
+        conn = ConnectionUtil.getConnection();
+    }
+    public ArtistRepository(Connection conn){
+//        why do we need 2?
+//        Mockito allows us to make 'dummy' mock objects that do exactly
+//        what we tell them for specific scenarios
+//        eg, we can say 'this mock resultset ALWAYS returns this mock data'
+        this.conn = conn;
+    }
+
+
     public int getArtistIdFromName(String name){
         try {
             PreparedStatement statement = conn.prepareStatement("Select * from Artist where name = ?");

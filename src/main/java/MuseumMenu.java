@@ -2,10 +2,11 @@ import Service.PaintingService;
 import Util.ConnectionUtil;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MuseumMenu {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 //        Connection conn = ConnectionUtil.getConnection();
         boolean visitingMuseum = true;
         PaintingService ps = new PaintingService();

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionUtil {
     private static Connection conn;
-    public static Connection getConnection(){
+    public static Connection getConnection() throws SQLException {
         if(conn == null){
             try{
                 String url = "jdbc:sqlserver://localhost:1433;TrustServerCertificate=True";
@@ -17,6 +17,7 @@ public class ConnectionUtil {
                 e.printStackTrace();
             }
         }
+        conn.setAutoCommit(false);
         return conn;
     }
 }
