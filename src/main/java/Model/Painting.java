@@ -3,7 +3,9 @@ package Model;
 public class Painting {
     public String title;
     public int artistID;
+    public Painting(){
 
+    }
     public Painting(String title, int artistID) {
         this.title = title;
         this.artistID = artistID;

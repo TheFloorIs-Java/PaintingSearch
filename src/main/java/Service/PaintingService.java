@@ -36,8 +36,12 @@ public class PaintingService {
         }
         conn.commit();
     }
-    public List<Painting> getAllPaintingsByArtistName(String name){
+    public List<Painting> getAllPaintingsByArtistName(String name) throws Exception {
+//        throw new Exception();
+
         int id = as.getArtistIDFromName(name);
         return pr.getAllPaintingsByArtistID(id);
+
+
     }
 }
