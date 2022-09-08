@@ -3,6 +3,7 @@ import Service.ArtistService;
 import Service.PaintingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.Javalin;
+import io.javalin.core.JavalinConfig;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -11,9 +12,11 @@ public class MuseumAPI {
     public static void main(String[] args) throws SQLException {
         PaintingService ps = new PaintingService();
         ArtistService as = new ArtistService();
-        Javalin app = Javalin.create().start(9000);
+        Javalin app = Javalin.create(JavalinConfig::enableCorsForAllOrigins);
 
-        app.get("/paintings/", ctx -> {ctx.result(ps.getAllPaintings().toString());});
+        app.start(9000);
+
+        app.get("/paintings/", ctx -> {ctx.json(ps.getAllPaintings());});
         app.get("/paintings/artistname/{name}", ctx ->
         {
 //            we're passing in the expected behavior to the web request into the method get
@@ -30,6 +33,11 @@ public class MuseumAPI {
             Painting requestPainting = mapper.readValue(ctx.body(), Painting.class);
             ps.addPainting(requestPainting.getTitle(), requestPainting.getArtistID());
         });
-
+/*
+What's actually happening with javalin is MULTITHREADING
+Javalin actually runs multiple instances of Java executions simultaneously.
+First, it sets up the server (with our app.get / app.post / app.delete etc endpoints) and block the program
+from finishing, as it is in a permanent while loop waiting for new web requests to come in.
+ */
     }
 }
