@@ -1,6 +1,7 @@
 package Service;
 
 import DAO.ArtistRepository;
+import Model.Artist;
 
 import java.sql.SQLException;
 
@@ -14,5 +15,8 @@ public class ArtistService {
     }
     public int getArtistIDFromName(String name){
         return ar.getArtistIdFromName(name);
+    }
+    public Artist getArtistFromId(int id){
+        return ar.getArtistFromId(id);
     }
 }

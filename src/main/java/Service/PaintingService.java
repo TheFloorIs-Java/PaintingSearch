@@ -26,10 +26,11 @@ public class PaintingService {
     public List<Painting> getAllPaintingsByArtistID(int id){
         return pr.getAllPaintingsByArtistID(id);
     }
-    public void addPainting(String title, int id) throws SQLException {
+    public void addPainting(String title, int id, String url) throws SQLException {
         Painting existingPainting = pr.getPaintingByTitle(title);
+        System.out.println(url);
         if(existingPainting == null) {
-            Painting newPainting = new Painting(title, id);
+            Painting newPainting = new Painting(title, id, url);
             pr.addPainting(newPainting);
         }else{
 //            do nothing
@@ -43,5 +44,8 @@ public class PaintingService {
         return pr.getAllPaintingsByArtistID(id);
 
 
+    }
+    public Painting getPaintingByTitle(String title){
+        return pr.getPaintingByTitle(title);
     }
 }

@@ -1,5 +1,6 @@
 package DAO;
 
+import Model.Artist;
 import Util.ConnectionUtil;
 
 import java.sql.Connection;
@@ -34,5 +35,18 @@ public class ArtistRepository {
             e.printStackTrace();
         }
         return -1;
+    }
+    public Artist getArtistFromId(int id){
+        try {
+            PreparedStatement statement = conn.prepareStatement("Select * from Artist where id = ?");
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                return new Artist(rs.getInt("id"), rs.getString("name"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -3,12 +3,14 @@ package Model;
 public class Painting {
     public String title;
     public int artistID;
+    public String url;
     public Painting(){
 
     }
-    public Painting(String title, int artistID) {
+    public Painting(String title, int artistID, String url) {
         this.title = title;
         this.artistID = artistID;
+        this.url = url;
     }
 
     @Override
@@ -30,5 +32,13 @@ public class Painting {
 
     public void setArtistID(int artistID) {
         this.artistID = artistID;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

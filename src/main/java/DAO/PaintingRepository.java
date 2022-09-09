@@ -18,7 +18,7 @@ public class PaintingRepository {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("Select * From Painting");
             while(rs.next()){
-                Painting loadedPainting = new Painting(rs.getString("title"), rs.getInt("artistID"));
+                Painting loadedPainting = new Painting(rs.getString("title"), rs.getInt("artistID"), rs.getString("url"));
                 allPaintings.add(loadedPainting);
             }
         }catch(SQLException e){
@@ -34,7 +34,7 @@ public class PaintingRepository {
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                Painting loadedPainting = new Painting(rs.getString("title"), rs.getInt("artistID"));
+                Painting loadedPainting = new Painting(rs.getString("title"), rs.getInt("artistID"), rs.getString("url"));
                 paintings.add(loadedPainting);
             }
         }catch(SQLException e){
@@ -49,10 +49,12 @@ public class PaintingRepository {
     }
     public void addPainting(Painting p){
         try{
-            PreparedStatement statement = conn.prepareStatement("insert into Painting(title, artistID) " +
-                    "values (?, ?)");
+            PreparedStatement statement = conn.prepareStatement("insert into Painting(title, artistID, url) " +
+                    "values (?, ?, ?)");
             statement.setString(1, p.getTitle());
             statement.setInt(2, p.getArtistID());
+            System.out.println(p.getUrl());
+            statement.setString(3, p.getUrl());
             statement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
@@ -64,7 +66,7 @@ public class PaintingRepository {
             statement.setString(1, title);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                Painting p = new Painting(rs.getString("title"), rs.getInt("artistID"));
+                Painting p = new Painting(rs.getString("title"), rs.getInt("artistID"), rs.getString("url"));
                 return p;
             }
         }catch(SQLException e){

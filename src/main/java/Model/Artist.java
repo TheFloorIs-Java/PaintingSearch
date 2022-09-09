@@ -3,6 +3,7 @@ package Model;
 public class Artist {
     public int id;
     public String name;
+
     public Artist(){
 
     }

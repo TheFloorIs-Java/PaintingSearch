@@ -19,7 +19,7 @@ public class PaintingServiceTest {
         PaintingRepository pr;
         as = Mockito.mock(ArtistService.class);
         pr = Mockito.mock(PaintingRepository.class);
-        Painting p =new Painting("TestPainting", 1);
+        Painting p =new Painting("TestPainting", 1, null);
         Mockito.when(pr.getPaintingByTitle("TestPainting")).thenReturn(p);
         PaintingService ps = new PaintingService(as, pr);
         Mockito.verify(pr, never()).addPainting(p);
@@ -38,10 +38,10 @@ public class PaintingServiceTest {
         PaintingRepository pr;
         as = Mockito.mock(ArtistService.class);
         pr = Mockito.mock(PaintingRepository.class);
-        Painting p =new Painting("TestPainting", 1);
+        Painting p =new Painting("TestPainting", 1, null);
         Mockito.when(pr.getPaintingByTitle("TestPainting")).thenReturn(null);
         PaintingService ps = new PaintingService(as, pr);
-        ps.addPainting("TestPainting", 1);
+        ps.addPainting("TestPainting", 1, null);
         Mockito.verify(pr).addPainting(any(Painting.class));
         /*
         We were able to verify that the addPainting method at some point was called

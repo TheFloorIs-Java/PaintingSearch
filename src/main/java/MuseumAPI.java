@@ -31,7 +31,12 @@ public class MuseumAPI {
         app.post("paintings", ctx ->{
             ObjectMapper mapper = new ObjectMapper();
             Painting requestPainting = mapper.readValue(ctx.body(), Painting.class);
-            ps.addPainting(requestPainting.getTitle(), requestPainting.getArtistID());
+            ps.addPainting(requestPainting.getTitle(), requestPainting.getArtistID(), requestPainting.getUrl());
+        });
+        app.get("paintings/title/{title}", ctx->
+        {ctx.json(ps.getPaintingByTitle(ctx.pathParam("title")));});
+        app.get("artist/{id}", ctx-> {
+           ctx.json(as.getArtistFromId(Integer.parseInt(ctx.pathParam("id")))) ;
         });
 /*
 What's actually happening with javalin is MULTITHREADING
