@@ -1,5 +1,11 @@
 plugins {
     id 'java'
+    id("com.github.johnrengelman.shadow") version "6.0.0"
+// Shadow task depends on Jar task, so these configs are reflected for Shadow as well
+    tasks.jar {
+        manifest.attributes["Main-Class"] = "Main"
+    }
+
 }
 
 group 'org.example'
