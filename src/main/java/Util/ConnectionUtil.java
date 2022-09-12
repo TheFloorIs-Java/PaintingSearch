@@ -9,9 +9,9 @@ public class ConnectionUtil {
     public static Connection getConnection() throws SQLException {
         if(conn == null){
             try{
-                String url = "jdbc:sqlserver://localhost:1433;TrustServerCertificate=True";
-                String username = "sa";
-                String password = "P@SSWORD123";
+                String url = "jdbc:sqlserver://revated.database.windows.net:1433;database=db1;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+                String username = System.getenv("dbusername");
+                String password = System.getenv("dbpassword");
                 conn = DriverManager.getConnection(url, username, password);
             }catch(SQLException e){
                 e.printStackTrace();
