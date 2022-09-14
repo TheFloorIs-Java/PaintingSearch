@@ -1,9 +1,14 @@
 plugins {
     id 'java'
-}
-plugins {
+    id 'application'
     id("com.github.johnrengelman.shadow") version "6.0.0"
 }
+
+
+application {
+    mainClass = 'MuseumAPI'
+}
+
 // Shadow task depends on Jar task, so these configs are reflected for Shadow as well
 tasks.jar {
     manifest.attributes["Main-Class"] = "MuseumAPI"
