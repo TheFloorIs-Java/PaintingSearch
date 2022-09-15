@@ -47,13 +47,13 @@ jobs:
           cache: 'gradle'
 
       - name: Build with Gradle
-        run: gradle clean install
+        run: ./gradlew shadowJar
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/build/libs/*.jar'
 
   deploy:
     permissions:
