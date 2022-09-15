@@ -15,7 +15,7 @@ public class MuseumAPI {
         ArtistService as = new ArtistService();
         Javalin app = Javalin.create(JavalinConfig::enableCorsForAllOrigins);
 
-        app.start(9000);
+        app.start(80);
 
         app.get("/paintings/", ctx -> ctx.json(ps.getAllPaintings()));
         app.get("/paintings/artistname/{name}", ctx ->
