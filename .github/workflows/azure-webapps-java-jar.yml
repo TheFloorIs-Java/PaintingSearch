@@ -45,6 +45,9 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.DISTRIBUTION }}
           cache: 'gradle'
+          
+      - name: Update gradlew permissions
+        run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew shadowJar
