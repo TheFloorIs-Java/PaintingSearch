@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ArtistRepository {
     Connection conn;
@@ -48,5 +50,18 @@ public class ArtistRepository {
             e.printStackTrace();
         }
         return null;
+    }
+    public List<Artist> getAllArtists(){
+        List<Artist> artistList = new ArrayList<>();
+        try{
+            PreparedStatement statement = conn.prepareStatement("Select * from Artist");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                artistList.add(new Artist(rs.getInt("id"), rs.getString("name")));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return artistList;
     }
 }

@@ -36,9 +36,13 @@ public class MuseumAPI {
         });
         app.get("paintings/title/{title}", ctx->
         {ctx.json(ps.getPaintingByTitle(ctx.pathParam("title")));});
-        app.get("artist/{id}", ctx-> {
+        app.get("artists/{id}", ctx-> {
            ctx.json(as.getArtistFromId(Integer.parseInt(ctx.pathParam("id")))) ;
         });
+        app.get("artists", ctx ->
+            ctx.json(as.getAllArtists())
+        );
+        app.get("", ctx->ctx.result("Hello from API!"));
 /*
 What's actually happening with javalin is MULTITHREADING
 Javalin actually runs multiple instances of Java executions simultaneously.

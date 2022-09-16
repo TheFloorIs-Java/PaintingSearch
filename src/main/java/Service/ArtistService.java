@@ -4,6 +4,7 @@ import DAO.ArtistRepository;
 import Model.Artist;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ArtistService {
     ArtistRepository ar;
@@ -18,5 +19,8 @@ public class ArtistService {
     }
     public Artist getArtistFromId(int id){
         return ar.getArtistFromId(id);
+    }
+    public List<Artist> getAllArtists(){
+        return ar.getAllArtists();
     }
 }
